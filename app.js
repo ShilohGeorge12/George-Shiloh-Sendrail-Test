@@ -1,13 +1,15 @@
 const app = require('express')();
 const products = require('./products');
 const accessOrigin = require('./middleware/accessControl');
+const Search = require( './utils/search' );
 app.use(accessOrigin);
 
 app.get('/api/v1/products', (req, res) => {
 	let newProducts = products;
 	const { search } = req.query;
 	if (search) {
-		newProducts = newProducts.filter((prod) => prod.name.toLowerCase().indexOf(search.toLowerCase()) !== -1);
+		newProducts = Search(products, 'Dan Abrahmov', 'status')
+		console.log(search);
 	}
 	if (newProducts.length === 0) {
 		return res.json({ success: true, data: [] });
