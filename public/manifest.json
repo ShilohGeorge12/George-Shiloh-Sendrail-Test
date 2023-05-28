@@ -1,0 +1,27 @@
+{
+  "name": "Sendrail",
+  "description": "This is a Sendrail App",
+  "short_name": "Sendrail",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#FFFFFF",
+  "background_color": "#FFFFFF",
+  "icons": [
+    {
+      "src": "/tv(1).png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "/tv.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "protocol_handlers": [
+    {
+      "protocol": "web+sendrail",
+      "url": "http://localhost:1220/%s"
+    }
+  ]
+}
