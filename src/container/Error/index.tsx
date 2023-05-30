@@ -1,3 +1,4 @@
+import { Container, Text } from '@chakra-ui/react';
 import React from 'react';
 
 interface Istate{
@@ -25,10 +26,10 @@ class ErrorBoundary extends React.Component<IerrorBoundry, Istate>{
     if(this.state.hasError){
       return (
         <>
-          <div>
-            <p>SomeThing Went Wrong!!</p>
-            <p>Please Reload The Page.</p>
-          </div>
+          <Container>
+            <Text>SomeThing Went Wrong!</Text>
+            <Text>Please Reload The Page to Continue</Text>
+          </Container>
         </>
       )
     }

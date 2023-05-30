@@ -5,22 +5,24 @@ import { BiEnvelopeOpen } from 'react-icons/bi';
 import { FiLogIn, FiLogOut } from 'react-icons/fi';
 import { AiFillSetting } from 'react-icons/ai';
 import { RiEBike2Line } from 'react-icons/ri';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { BsFillCreditCardFill } from 'react-icons/bs';
+import { Tpath } from '../../types';
 
 interface ISideBarProps {}
 
 function SideBar(props: ISideBarProps) {
-  const isLoggedIn = true;
-  const { pathname } = useLocation()
-  const isActive = (path: Tpath): boolean => {
-    if( pathname === path ) return true;
-    return false;
-  };
+	const isLoggedIn = true;
+	const { pathname } = useLocation();
+	const isActive = (path: Tpath): boolean => {
+		if (pathname === path) return true;
+		return false;
+	};
+	const naviTo = useNavigate();
 
-  return (
+	return (
 		<Flex
-			w={{ base:'25', md: '60' }}
+			w={{ base: '25', md: '60' }}
 			h={'full'}
 			bg={'#070529'}
 			p='5'
@@ -31,123 +33,120 @@ function SideBar(props: ISideBarProps) {
 			<Flex
 				fontSize={'24px'}
 				alignItems={'center'}
-        bg='transparent'
-        color={'#F9C567'}
-        fontWeight={'bold'}
-        >
-        <Box pr={'3px'}>
-          <FaBoxOpen /> 
-        </Box>
-          Sendrail
+				bg='transparent'
+				color={'#F9C567'}
+				fontWeight={'bold'}>
+				<Box pr={'3px'}>
+					<FaBoxOpen />
+				</Box>
+				Sendrail
 			</Flex>
 
-      <Flex
+			<Flex
+				fontFamily={''}
 				fontSize={'20px'}
 				alignItems={'flex-start'}
-        justifyContent={'center'}
-        gap={'.5em'}
-        direction={'column'}>
+				justifyContent={'center'}
+				gap={'.5em'}
+				direction={'column'}>
 				<Button
 					bg='transparent'
-          _hover={{ bg: isActive('/') ? 'transparent' : 'orange.400' }}
+					_hover={{ bg: isActive('/') ? 'transparent' : 'orange.400' }}
 					color={isActive('/') ? '#F9C567' : 'white'}
-          fontWeight={'500'}
-          >
+					fontWeight={'500'}
+					onClick={() => naviTo('/')}>
 					<Box pr={'3px'}>
-            <BiEnvelopeOpen /> 
-          </Box>
-            Dashboard
+						<BiEnvelopeOpen />
+					</Box>
+					Dashboard
 				</Button>
 
 				<Button
 					bg='transparent'
-          _hover={{ bg: isActive('/shipment') ? 'transparent' : 'orange.400' }}
+					_hover={{ bg: isActive('/shipment') ? 'transparent' : 'orange.400' }}
 					color={isActive('/shipment') ? '#F9C567' : 'white'}
-          fontWeight={'500'}
-          >
+					fontWeight={'500'}
+					onClick={() => naviTo('/shipment')}>
 					<Box pr={'3px'}>
-            <HiOutlineClipboardList /> 
-          </Box>
-            Shipment
+						<HiOutlineClipboardList />
+					</Box>
+					Shipment
 				</Button>
 
 				<Button
 					bg='transparent'
-          _hover={{ bg: isActive('/customer') ? 'transparent' : 'orange.400' }}
+					_hover={{ bg: isActive('/customer') ? 'transparent' : 'orange.400' }}
 					color={isActive('/customer') ? '#F9C567' : 'white'}
-          fontWeight={'500'}
-          >
+					fontWeight={'500'}
+					onClick={() => naviTo('/customer')}>
 					<Box pr={'3px'}>
-            <FaUsers /> 
-          </Box>
-            Customer
+						<FaUsers />
+					</Box>
+					Customer
 				</Button>
 
 				<Button
 					bg='transparent'
-          _hover={{ bg: isActive('/courier') ? 'transparent' : 'orange.400' }}
+					_hover={{ bg: isActive('/courier') ? 'transparent' : 'orange.400' }}
 					color={isActive('/courier') ? '#F9C567' : 'white'}
-          fontWeight={'500'}
-          >
+					fontWeight={'500'}
+					onClick={() => naviTo('/courier')}>
 					<Box pr={'3px'}>
-            <RiEBike2Line /> 
-          </Box>
-            Courier
+						<RiEBike2Line />
+					</Box>
+					Courier
 				</Button>
 
 				<Button
 					bg='transparent'
-          _hover={{ bg: isActive('/payroll') ? 'transparent' : 'orange.400' }}
+					_hover={{ bg: isActive('/payroll') ? 'transparent' : 'orange.400' }}
 					color={isActive('/payroll') ? '#F9C567' : 'white'}
-          fontWeight={'500'}
-          >
+					fontWeight={'500'}
+					onClick={() => naviTo('/payroll')}>
 					<Box pr={'3px'}>
-            <BsFillCreditCardFill /> 
-          </Box>
-            Payroll
+						<BsFillCreditCardFill />
+					</Box>
+					Payroll
 				</Button>
 
 				<Button
 					bg='transparent'
-          _hover={{ bg: isActive('/transaction') ? 'transparent' : 'orange.400' }}
+					_hover={{ bg: isActive('/transaction') ? 'transparent' : 'orange.400' }}
 					color={isActive('/transaction') ? '#F9C567' : 'white'}
-          fontWeight={'500'}
-          >
+					fontWeight={'500'}
+					onClick={() => naviTo('/transaction')}>
 					<Box pr={'3px'}>
-            <FaUsers /> 
-          </Box>
-            Transaction
+						<FaUsers />
+					</Box>
+					Transaction
 				</Button>
 
 				<Button
 					bg='transparent'
-          _hover={{ bg: isActive('/settings') ? 'transparent' : 'orange.400' }}
+					_hover={{ bg: isActive('/settings') ? 'transparent' : 'orange.400' }}
 					color={isActive('/settings') ? '#F9C567' : 'white'}
-          fontWeight={'500'}
-          >
-					<Box pr={'3px'} >
-            <AiFillSetting /> 
-          </Box>
-            Settings
+					fontWeight={'500'}
+					onClick={() => naviTo('/setting')}>
+					<Box pr={'3px'}>
+						<AiFillSetting />
+					</Box>
+					Settings
 				</Button>
 
 				<Button
 					bg='transparent'
 					colorScheme={'white'}
-					fontWeight={'bold'}
-          >
-            {
-              isLoggedIn ? (
-                <Box pr={'3px'}>
-                  <FiLogOut /> 
-                </Box>
-              ) : (
-                <Box pr={'3px'}>
-                  <FiLogIn /> 
-                </Box>
-              )
-            }
-            Logout
+					fontWeight={'bold'}>
+					{isLoggedIn ? (
+						<Box pr={'3px'}>
+							<FiLogOut />
+						</Box>
+					) : (
+						<Box pr={'3px'}>
+							<FiLogIn />
+						</Box>
+					)}
+					Logout
 				</Button>
 			</Flex>
 		</Flex>

@@ -1,16 +1,29 @@
-import { Box, Button, Flex, Input, Spacer, Image, Text, Icon } from '@chakra-ui/react';
+import { Box, Button, Flex, Input, Spacer, Image, Text, Icon, useToast } from '@chakra-ui/react';
 import { FaSearch } from 'react-icons/fa';
-import { FaBoxOpen, FaBell, FaRegBell } from 'react-icons/fa';
+import { FaRegBell } from 'react-icons/fa';
+import userImage from '../../assets/Images/user.webp';
 
 interface INavProps {}
 
 function Nav(props: INavProps) {
+  
+  const toast = useToast()
+  const handleNotification = () => {
+    toast({
+      title: 'Notifications',
+      description: 'you have 3 🔔',
+      status: 'info',
+      position: 'bottom-right',
+      isClosable: true,
+    })
+  };
+
 	return (
     <Flex
       w={'full'}
       h={'95px'}
       p={{ base: '1em' , lg:'2em'}}
-      gap={'66px'}>
+      gap={'26px'}>
 
       <Box position={'relative'}>
         <Input 
@@ -47,6 +60,8 @@ function Nav(props: INavProps) {
         color={'white'}
         textAlign={'center'}
         borderRadius={'10px'}
+        _hover={{ bg: '#ABB' }}
+        onClick={handleNotification}
       >
         <FaRegBell />
         <Box 
@@ -62,7 +77,7 @@ function Nav(props: INavProps) {
           h={'42px'}
           borderRadius={'50%'}
           alt={'profilePic'}
-          src={''}
+          src={ userImage }
         />
 
         <Flex  direction={'column'}>
@@ -70,11 +85,11 @@ function Nav(props: INavProps) {
             w={'72px'} 
             h={'26px'} 
             fontSize={'16px'} 
-            fontFamily={'500'}>Name.....</Text>
+            fontFamily={'500'}>John toe</Text>
           <Text
             w={'36.3px'} 
             h={'14px'} 
-            fontSize={'12px'} 
+            fontSize={'9px'} 
             fontFamily={'450'}>Admin</Text>
         </Flex>
       </Flex>
