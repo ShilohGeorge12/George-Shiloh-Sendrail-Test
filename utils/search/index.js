@@ -12,7 +12,7 @@ function Search(array, target, by) {
     const val = target.toLowerCase()
 
 		if (arr.toLowerCase() === val || arr.includes(val)) {
-			return array[middle];
+			return [ array[middle] ];
 		}
 
 		if (target < array[middle][By]) {
