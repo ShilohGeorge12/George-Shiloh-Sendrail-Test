@@ -7,7 +7,7 @@ import Rider from '../../container/Rider';
 import AddRider from './addRider';
 import PaginationRiders from './paginationRiders';
 import Loading from '../../container/Loading';
-import { Fetch } from '../../hooks/Fetch';
+import { Fetch } from '../../services/Fetch';
 import { typeGaurd } from '../../types';
 import { FaSearch } from 'react-icons/fa';
 import { BsFillTelephoneFill, BsFillChatDotsFill } from 'react-icons/bs';

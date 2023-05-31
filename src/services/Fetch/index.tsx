@@ -1,3 +1,4 @@
+
 import { typeGaurd } from "../../types";
 
 export const Fetch: fetchReq = async (endPoint, method, cacheControl, data) => {
