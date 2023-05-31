@@ -5,9 +5,11 @@ import Rider from '../../../container/Rider';
 
 interface IPaginationRidersProps {
   data: IRider[],
+  onCall: ( name: string, phoneNumber: string ) => void;
+  onChat: ( name: string, phoneNumber: string ) => void;
 };
 
-function PaginationRiders ( { data }: IPaginationRidersProps ) {
+function PaginationRiders ( { data, onCall, onChat }: IPaginationRidersProps ) {
 	const [currentPage, setCurrentPage] = useState<number>(1);
   const pageSize = 2;
 
@@ -24,6 +26,9 @@ function PaginationRiders ( { data }: IPaginationRidersProps ) {
             region={rider.region}
             status={rider.status}
             image={rider.image}
+            contact={rider.contact}
+						onCall={onCall}
+            onChat={onChat}
           />
         ))
       }

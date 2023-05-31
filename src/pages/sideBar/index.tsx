@@ -8,7 +8,6 @@ import { RiEBike2Line } from 'react-icons/ri';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { BsFillCreditCardFill } from 'react-icons/bs';
 import useContextApi from '../../context';
-import { useEffect } from 'react';
 
 function SideBar() {
 	const { state } = useContextApi();
@@ -19,7 +18,7 @@ function SideBar() {
 		return false;
 	};
 	const naviTo = useNavigate();
-	useEffect(()=>console.log( state.modal ),[state.modal])
+
 	return (
 		<Flex
 			w={{ base: '25', md: '60' }}
@@ -138,7 +137,7 @@ function SideBar() {
 					_hover={{ bg: isActive('/settings') ? 'transparent' : 'orange.400' }}
 					color={isActive('/settings') ? '#F9C567' : 'white'}
 					fontWeight={'500'}
-					onClick={() => naviTo('/setting')}
+					onClick={() => naviTo('/settings')}
 					isDisabled={ state.modal ? true : false}
 					_disabled={{ color: 'white' }}>
 					<Box pr={'3px'}>

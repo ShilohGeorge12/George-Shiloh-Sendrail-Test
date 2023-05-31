@@ -1,5 +1,5 @@
 import { Flex, Image, Text } from '@chakra-ui/react';
-import notFound from '../../assets/Images/puppies.webp';
+import notFound from '../../assets/Images/connection.webp';
 import MetaData from '../../meta';
 import { useLocation } from 'react-router-dom';
 
@@ -20,8 +20,8 @@ function NotFound() {
         path={ pathname }
       />
       <Image
-        w="50%"
-        borderRadius={'50%'}
+        w="25%"
+        title={'error 404'}
         alt={'error 404'}
         src={ notFound }
       />

@@ -35,7 +35,7 @@ function Nav() {
           px='40px'
           border={'.5px solid #fff'}
           borderRadius={'12px'}
-          _focus={{ borderColor: '#AAAAAA',outline: 'none' }}
+          focusBorderColor={'#AAAAAA'}
           disabled={ state.modal ? true : false}
         />
         <Box
@@ -66,12 +66,15 @@ function Nav() {
         isDisabled={ state.modal ? true : false}
         _disabled={{ color: 'white' }}
       >
-        <FaRegBell />
-        <Box 
+        <Text
+          fontSize={{ base:'sm', md: 'md' }}>
+          <FaRegBell />
+        </Text>
+        <Text 
           as='span'
           pl={'3px'}
           fontSize={'12px'}
-        >2</Box>
+        >2</Text>
       </Button>
 
       <Flex gap={'10px'}>

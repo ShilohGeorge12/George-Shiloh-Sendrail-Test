@@ -3,6 +3,7 @@ import { createContext, useReducer, useContext, ReactNode } from 'react';
 const initState: Icontext = {
 	modal: false,
 };
+
 const context = createContext({
 	state: initState,
 	dispatch: (val: Taction) => {},

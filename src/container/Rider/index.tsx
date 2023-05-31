@@ -3,8 +3,13 @@ import { BsFillChatDotsFill, BsFillTelephoneFill } from "react-icons/bs";
 import { BiDotsVertical } from "react-icons/bi";
 import useContextApi from "../../context";
 
-function Rider ( props: Omit<IRider, 'id'> ) {
-  const { name, region, status, image } = props;
+interface IRidersProps extends  Omit<IRider, 'id'>{
+  onCall: ( name: string, phoneNumber: string ) => void;
+  onChat: ( name: string, phoneNumber: string ) => void;
+}
+
+function Rider ( props: IRidersProps) {
+  const { name, region, status, image, contact, onCall, onChat } = props;
   const { state } = useContextApi()
   const imageFallBack = (
   <Skeleton
@@ -48,6 +53,7 @@ function Rider ( props: Omit<IRider, 'id'> ) {
           _hover={{ animation: '' }}
           isDisabled={ state.modal ? true : false}
 					_disabled={{ color: '#070529' }}
+          onClick={()=> onCall( name, contact )}
         >
           <BsFillTelephoneFill />
         </Button>
@@ -55,7 +61,8 @@ function Rider ( props: Omit<IRider, 'id'> ) {
           color={'#070529'} 
           bg={'transparent'}
           isDisabled={ state.modal ? true : false}
-          _disabled={{ color: 'white' }}>
+          _disabled={{ color: 'white' }}
+          onClick={()=> onChat( name, contact )}>
           <BsFillChatDotsFill />
         </Button>
       </Flex>

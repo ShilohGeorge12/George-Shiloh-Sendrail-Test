@@ -1,16 +1,17 @@
-import { useLocation } from 'react-router-dom';
-import MetaData from '../../meta';
-import { Box, Button, Flex, Heading, Input, SimpleGrid, Spacer, Text, useToast } from '@chakra-ui/react';
-import { FaSearch } from 'react-icons/fa';
-import { BiFilter } from 'react-icons/bi';
-import Rider from '../../container/Rider';
 import { ChangeEvent, useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import useContextApi from '../../context';
+import { Box, Button, Flex, Heading, Input, SimpleGrid, Spacer, Text, useToast } from '@chakra-ui/react';
+import MetaData from '../../meta';
+import Rider from '../../container/Rider';
 import AddRider from './addRider';
+import PaginationRiders from './paginationRiders';
+import Loading from '../../container/Loading';
 import { Fetch } from '../../hooks/Fetch';
 import { typeGaurd } from '../../types';
-import Loading from '../../container/Loading';
-import PaginationRiders from './paginationRiders';
-import useContextApi from '../../context';
+import { FaSearch } from 'react-icons/fa';
+import { BsFillTelephoneFill, BsFillChatDotsFill } from 'react-icons/bs';
+import { BiFilter } from 'react-icons/bi';
 
 function Courier() {
 	const { pathname } = useLocation();
@@ -47,6 +48,30 @@ function Courier() {
 		}
 	};
 
+	const onCall = ( name: string, phoneNumber: string ) => {
+		toast({
+			title: name,
+			description: `you attempted to call This Number ${phoneNumber}`,
+			icon: <BsFillTelephoneFill />,
+			status: 'info',
+			duration: 3000,
+			position: 'bottom-right',
+			isClosable: true,
+		})
+	};
+
+	const onChat = ( name: string, phoneNumber: string ) => {
+		toast({
+			title: name,
+			description: `you Can Chat ${name} @ ${phoneNumber}`,
+			icon: <BsFillChatDotsFill />,
+			status: 'info',
+			duration: 5000,
+			position: 'bottom-right',
+			isClosable: true,
+		})
+	}
+
 	useEffect(() => {
 		Fetch(`/v1/products`, 'GET', 'force-cache').then((response) => {
 			if (typeGaurd<TResponse>(response)) {
@@ -59,7 +84,7 @@ function Courier() {
 	}, []);
 
 	return (
-		<Box px='30px' position={'relative'}>
+		<Box w={'100%'} px='30px' position={'relative'}>
 			<MetaData
 				title='Courier'
 				description='Manage Your Rider from this Page'
@@ -74,6 +99,7 @@ function Courier() {
 			</Heading>
 
 			<Flex
+				w={'100%'}
 				gap={'20px'}
 				alignItems={'center'}>
 				<Box
@@ -86,9 +112,8 @@ function Courier() {
 						h={'56px'}
 						pr={'30px'}
 						placeholder='Search by name'
-						border={'2px solid #AAA'}
 						borderRadius={'12px'}
-						_focus={{ borderColor: '#AAAAAA', outline: 'none' }}
+						focusBorderColor={'#AAAAAA'}
 						onChange={handleSearch}
 						value={query}
 						disabled={ state.modal ? true : false}
@@ -166,6 +191,8 @@ function Courier() {
           searchResult.length === 0 && (
           <PaginationRiders
             data={riders}
+						onCall={onCall}
+						onChat={onChat}
           />
         )
 			) : (
@@ -180,6 +207,9 @@ function Courier() {
 						region={rider.region}
 						status={rider.status}
 						image={rider.image}
+						contact={rider.contact}
+						onCall={onCall}
+						onChat={onChat}
 					/>
 			))}
 			{state.modal && <AddRider />}

@@ -6,6 +6,7 @@ interface IRider {
 	region: string;
 	status: 'Assigned' | 'Unassigned';
 	image: string;
+	contact: string;
 }
 
 type TResponse = { success: true; error: 'Not Found' } | { success: true; data: IRider[]; nbHits: number };

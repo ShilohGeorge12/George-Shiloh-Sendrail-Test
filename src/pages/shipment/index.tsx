@@ -1,19 +1,26 @@
 import { useLocation } from 'react-router-dom';
 import MetaData from '../../meta';
+import { Container, Text } from '@chakra-ui/react';
 
 interface IShipmentProps {}
 
 function Shipment(props: IShipmentProps) {
 	const { pathname } = useLocation();
 	return (
-		<section>
+		<Container>
 			<MetaData
-				title='ShipMent'
+				title='Shipment'
 				description='Manage Your Shipment on this Page'
 				path={pathname}
 			/>
-			ShipMent Page
-		</section>
+			<Text
+				color={'gray.400'}
+				fontSize={'xl'}
+				textAlign={'center'}
+			>
+			Shipment Page
+			</Text> 
+		</Container>
 	);
 }
 
