@@ -1,22 +1,24 @@
-import { useState } from 'react';
 import {BrowserRouter as  Router, Routes, Route} from 'react-router-dom';
+import { Flex, SystemStyleObject } from '@chakra-ui/react';
+import useContextApi from './context';
+import ErrorBoundary from './container/Error';
 import Home from './pages/home';
-import { Flex } from '@chakra-ui/react';
 import Nav from './pages/navBar';
 import SideBar from './pages/sideBar';
-import ErrorBoundary from './container/Error';
 import Courier from './pages/courier';
 import Payroll from './pages/payroll';
-import NotFound from './container/NotFound';
+import NotFound from './pages/NotFound';
 import Transaction from './pages/transaction';
 import Settings from './pages/settings';
 
 
 function App() {
-  // const [count, setCount] = useState(0)
-
+  const { state } = useContextApi()
+  const ContainerStyles: SystemStyleObject = {
+    filter: state.modal ? 'blur(2px)' : 'none',
+  }
   return (
-    <Flex w='100%' h='100vh' as='section'>
+    <Flex w='100%' h='100vh' as='section' sx={ContainerStyles}>
       <Router>
         <SideBar />
         <Flex w={'full'} direction={'column'}>

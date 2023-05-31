@@ -1,11 +1,11 @@
-import { Box, Button, Flex, Input, Spacer, Image, Text, Icon, useToast } from '@chakra-ui/react';
+import { Box, Button, Flex, Input, Spacer, Image, Text, useToast } from '@chakra-ui/react';
 import { FaSearch } from 'react-icons/fa';
 import { FaRegBell } from 'react-icons/fa';
 import userImage from '../../assets/Images/user.webp';
+import useContextApi from '../../context';
 
-interface INavProps {}
-
-function Nav(props: INavProps) {
+function Nav() {
+  const { state } = useContextApi()
   
   const toast = useToast()
   const handleNotification = () => {
@@ -36,6 +36,7 @@ function Nav(props: INavProps) {
           border={'.5px solid #fff'}
           borderRadius={'12px'}
           _focus={{ borderColor: '#AAAAAA',outline: 'none' }}
+          disabled={ state.modal ? true : false}
         />
         <Box
           as={'span'}
@@ -62,6 +63,8 @@ function Nav(props: INavProps) {
         borderRadius={'10px'}
         _hover={{ bg: '#ABB' }}
         onClick={handleNotification}
+        isDisabled={ state.modal ? true : false}
+        _disabled={{ color: 'white' }}
       >
         <FaRegBell />
         <Box 
@@ -78,6 +81,7 @@ function Nav(props: INavProps) {
           borderRadius={'50%'}
           alt={'profilePic'}
           src={ userImage }
+          title={'John toe'}
         />
 
         <Flex  direction={'column'}>

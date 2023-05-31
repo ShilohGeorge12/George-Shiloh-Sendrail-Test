@@ -1,9 +1,11 @@
 import { Button, Flex, Image, SimpleGrid, Skeleton, Text } from "@chakra-ui/react";
 import { BsFillChatDotsFill, BsFillTelephoneFill } from "react-icons/bs";
 import { BiDotsVertical } from "react-icons/bi";
+import useContextApi from "../../context";
 
 function Rider ( props: Omit<IRider, 'id'> ) {
   const { name, region, status, image } = props;
+  const { state } = useContextApi()
   const imageFallBack = (
   <Skeleton
     height="50px"
@@ -18,6 +20,7 @@ function Rider ( props: Omit<IRider, 'id'> ) {
           w={'50px'}
           h={'50px'}
           borderRadius={'50%'}
+          title={ name }
           alt={ name }
           src={ image }
           fallback={imageFallBack}
@@ -43,15 +46,24 @@ function Rider ( props: Omit<IRider, 'id'> ) {
           color={'#070529'} 
           bg={'transparent'}
           _hover={{ animation: '' }}
+          isDisabled={ state.modal ? true : false}
+					_disabled={{ color: '#070529' }}
         >
           <BsFillTelephoneFill />
         </Button>
-        <Button color={'#070529'} bg={'transparent'}>
+        <Button 
+          color={'#070529'} 
+          bg={'transparent'}
+          isDisabled={ state.modal ? true : false}
+          _disabled={{ color: 'white' }}>
           <BsFillChatDotsFill />
         </Button>
       </Flex>
 
-      <Button bg={'transparent'}>
+      <Button 
+        bg={'transparent'}
+        isDisabled={ state.modal ? true : false}
+        _disabled={{ color: 'white' }}>
         <BiDotsVertical/>
       </Button>
     </SimpleGrid>

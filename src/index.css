@@ -1,4 +1,5 @@
-
+/* .v{ width: clamp(30%, 40%, 50%);  } */
+.v{ width: calc(60 - 100%)  }
 @font-face {
   font-family: 'FlowCircular';
   src: url('./assets/fonts/FlowCircular-Regular.ttf') format('truetype');

@@ -4,6 +4,7 @@ import App from './App.tsx';
 import './index.css';
 import { ChakraProvider, extendTheme, CSSReset } from '@chakra-ui/react';
 import { HelmetProvider } from 'react-helmet-async';
+import { ContextProvider } from './context/index.tsx';
 
 const theme = extendTheme({
   fonts: {
@@ -17,7 +18,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 		<ChakraProvider theme={theme}>
 			<CSSReset />
 			<HelmetProvider>
-				<App />
+				<ContextProvider>
+					<App />
+				</ContextProvider>
 			</HelmetProvider>
 		</ChakraProvider>
 	</React.StrictMode>

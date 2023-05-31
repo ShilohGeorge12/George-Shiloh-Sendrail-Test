@@ -7,11 +7,11 @@ import { AiFillSetting } from 'react-icons/ai';
 import { RiEBike2Line } from 'react-icons/ri';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { BsFillCreditCardFill } from 'react-icons/bs';
-import { Tpath } from '../../types';
+import useContextApi from '../../context';
+import { useEffect } from 'react';
 
-interface ISideBarProps {}
-
-function SideBar(props: ISideBarProps) {
+function SideBar() {
+	const { state } = useContextApi();
 	const isLoggedIn = true;
 	const { pathname } = useLocation();
 	const isActive = (path: Tpath): boolean => {
@@ -19,7 +19,7 @@ function SideBar(props: ISideBarProps) {
 		return false;
 	};
 	const naviTo = useNavigate();
-
+	useEffect(()=>console.log( state.modal ),[state.modal])
 	return (
 		<Flex
 			w={{ base: '25', md: '60' }}
@@ -50,11 +50,13 @@ function SideBar(props: ISideBarProps) {
 				gap={'.5em'}
 				direction={'column'}>
 				<Button
-					bg='transparent'
-					_hover={{ bg: isActive('/') ? 'transparent' : 'orange.400' }}
-					color={isActive('/') ? '#F9C567' : 'white'}
 					fontWeight={'500'}
-					onClick={() => naviTo('/')}>
+					bg='transparent'
+					color={isActive('/') ? '#F9C567' : 'white'}
+					onClick={() => naviTo('/')}
+					_hover={{ bg: isActive('/') ? 'transparent' : 'orange.400' }}
+					isDisabled={ state.modal ? true : false}
+					_disabled={{ color: 'white' }}>
 					<Box pr={'3px'}>
 						<BiEnvelopeOpen />
 					</Box>
@@ -66,7 +68,9 @@ function SideBar(props: ISideBarProps) {
 					_hover={{ bg: isActive('/shipment') ? 'transparent' : 'orange.400' }}
 					color={isActive('/shipment') ? '#F9C567' : 'white'}
 					fontWeight={'500'}
-					onClick={() => naviTo('/shipment')}>
+					onClick={() => naviTo('/shipment')}
+					isDisabled={ state.modal ? true : false}
+					_disabled={{ color: 'white' }}>
 					<Box pr={'3px'}>
 						<HiOutlineClipboardList />
 					</Box>
@@ -78,7 +82,9 @@ function SideBar(props: ISideBarProps) {
 					_hover={{ bg: isActive('/customer') ? 'transparent' : 'orange.400' }}
 					color={isActive('/customer') ? '#F9C567' : 'white'}
 					fontWeight={'500'}
-					onClick={() => naviTo('/customer')}>
+					onClick={() => naviTo('/customer')}
+					isDisabled={ state.modal ? true : false}
+					_disabled={{ color: 'white' }}>
 					<Box pr={'3px'}>
 						<FaUsers />
 					</Box>
@@ -90,7 +96,9 @@ function SideBar(props: ISideBarProps) {
 					_hover={{ bg: isActive('/courier') ? 'transparent' : 'orange.400' }}
 					color={isActive('/courier') ? '#F9C567' : 'white'}
 					fontWeight={'500'}
-					onClick={() => naviTo('/courier')}>
+					onClick={() => naviTo('/courier')}
+					isDisabled={ state.modal ? true : false}
+					_disabled={{ color: 'white' }}>
 					<Box pr={'3px'}>
 						<RiEBike2Line />
 					</Box>
@@ -102,7 +110,9 @@ function SideBar(props: ISideBarProps) {
 					_hover={{ bg: isActive('/payroll') ? 'transparent' : 'orange.400' }}
 					color={isActive('/payroll') ? '#F9C567' : 'white'}
 					fontWeight={'500'}
-					onClick={() => naviTo('/payroll')}>
+					onClick={() => naviTo('/payroll')}
+					isDisabled={ state.modal ? true : false}
+					_disabled={{ color: 'white' }}>
 					<Box pr={'3px'}>
 						<BsFillCreditCardFill />
 					</Box>
@@ -114,7 +124,9 @@ function SideBar(props: ISideBarProps) {
 					_hover={{ bg: isActive('/transaction') ? 'transparent' : 'orange.400' }}
 					color={isActive('/transaction') ? '#F9C567' : 'white'}
 					fontWeight={'500'}
-					onClick={() => naviTo('/transaction')}>
+					onClick={() => naviTo('/transaction')}
+					isDisabled={ state.modal ? true : false}
+					_disabled={{ color: 'white' }}>
 					<Box pr={'3px'}>
 						<FaUsers />
 					</Box>
@@ -126,7 +138,9 @@ function SideBar(props: ISideBarProps) {
 					_hover={{ bg: isActive('/settings') ? 'transparent' : 'orange.400' }}
 					color={isActive('/settings') ? '#F9C567' : 'white'}
 					fontWeight={'500'}
-					onClick={() => naviTo('/setting')}>
+					onClick={() => naviTo('/setting')}
+					isDisabled={ state.modal ? true : false}
+					_disabled={{ color: 'white' }}>
 					<Box pr={'3px'}>
 						<AiFillSetting />
 					</Box>
@@ -136,7 +150,9 @@ function SideBar(props: ISideBarProps) {
 				<Button
 					bg='transparent'
 					colorScheme={'white'}
-					fontWeight={'bold'}>
+					fontWeight={'bold'}
+					isDisabled={ state.modal ? true : false}
+					_disabled={{ color: 'white' }}>
 					{isLoggedIn ? (
 						<Box pr={'3px'}>
 							<FiLogOut />

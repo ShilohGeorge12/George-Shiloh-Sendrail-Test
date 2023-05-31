@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import MetaData from '../../meta';
-import { Box, Button, Flex, Heading, Input, SimpleGrid, Spacer, Text, useToast, useModal } from '@chakra-ui/react';
+import { Box, Button, Flex, Heading, Input, SimpleGrid, Spacer, Text, useToast } from '@chakra-ui/react';
 import { FaSearch } from 'react-icons/fa';
 import { BiFilter } from 'react-icons/bi';
 import Rider from '../../container/Rider';
@@ -10,27 +10,16 @@ import { Fetch } from '../../hooks/Fetch';
 import { typeGaurd } from '../../types';
 import Loading from '../../container/Loading';
 import PaginationRiders from './paginationRiders';
+import useContextApi from '../../context';
 
-
-interface ICourierProps {}
-
-function Courier(props: ICourierProps) {
+function Courier() {
 	const { pathname } = useLocation();
+	const { state, dispatch } = useContextApi()
 	const [riders, setRiders] = useState<IRider[]>([]);
 	const [isSuccess, setIsSuccess] = useState<boolean>(false);
 	const [searchResult, setSearchResult] = useState<IRider[]>([]);
-	const [modall, setModal] = useState<'open' | 'closed'>('closed');
 	const [query, setQuery] = useState<string>('');
-	const modal = useModal({
-		isOpen: false,
-		onClose() {
-			this.isOpen = false;
-		},
-	});
-
 	const toast = useToast();
-
-	const handleAddRider = () => setModal('open');
 
 	const handleSearch = async (e: ChangeEvent<HTMLInputElement>) => {
 		const query = e.target.value;
@@ -70,13 +59,14 @@ function Courier(props: ICourierProps) {
 	}, []);
 
 	return (
-		<Box px='30px'>
+		<Box px='30px' position={'relative'}>
 			<MetaData
 				title='Courier'
 				description='Manage Your Rider from this Page'
 				path={pathname}
 			/>
 			<Heading
+				as={'h1'}
 				fontWeight={'600px'}
 				fontSize={'24px'}
 				mb='20px'>
@@ -101,6 +91,7 @@ function Courier(props: ICourierProps) {
 						_focus={{ borderColor: '#AAAAAA', outline: 'none' }}
 						onChange={handleSearch}
 						value={query}
+						disabled={ state.modal ? true : false}
 					/>
 
 					<Box
@@ -120,7 +111,9 @@ function Courier(props: ICourierProps) {
 					alignItems={'center'}
 					fontSize={'33px'}
 					bg={'transparent'}
-					_hover={{ bg: 'transparent', color: '#1F1F1F' }}>
+					_hover={{ bg: 'transparent', color: '#1F1F1F' }}
+					_disabled={{color: '#000'}}
+					isDisabled={ state.modal ? true : false}>
 					<BiFilter />
 					<Text
 						as={'span'}
@@ -142,8 +135,10 @@ function Courier(props: ICourierProps) {
 					fontFamily={'Circular Std'}
 					fontSize={'14px'}
 					fontWeight={'500px'}
-					_hover={{ bg: 'rgba(7, 5, 41, 0.9)' }}
-					onClick={handleAddRider}>
+					_hover={{ bg: 'rgba(7, 5, 41, 0.9)', boxShadow: '1px 1px 10px 1px rgba(7, 5, 41, 0.9)', fontSize: '16px' }}
+					onClick={() => dispatch({ type: 'modalOpen' })}
+					_disabled={{bg: 'rgba(7, 5, 41, 0.9)'}}
+					isDisabled={ state.modal ? true : false}>
 					Add Rider
 				</Button>
 			</Flex>
@@ -187,7 +182,7 @@ function Courier(props: ICourierProps) {
 						image={rider.image}
 					/>
 			))}
-			{modal.isOpen && <AddRider />}
+			{state.modal && <AddRider />}
 		</Box>
 	);
 }

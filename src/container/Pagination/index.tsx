@@ -1,5 +1,5 @@
-import { NavLink } from 'react-router-dom';
 import { Button, List, ListItem } from "@chakra-ui/react";
+import useContextApi from '../../context';
 
 interface IpaginationProps {
 	length: number;
@@ -9,6 +9,7 @@ interface IpaginationProps {
 }
 
 function Pagination({ length, PageChange, PageSize, currentPage }: IpaginationProps) {
+	const { state } = useContextApi();
 	const len = Math.ceil(length / PageSize);
 	if (len === 1) return null;
 	const pages: number[] = [];
@@ -37,11 +38,12 @@ function Pagination({ length, PageChange, PageSize, currentPage }: IpaginationPr
 					type="button"
 					width="100%"
 					height="100%"
-					bg={page === currentPage ? "blue.500": "gray.300" }
-					color={page === currentPage ? "white" : "black"}
+					bg={ page === currentPage ? "blue.500": "gray.300" }
+					color={ page === currentPage ? "white" : "black"}
 					_hover={{ bg: page === currentPage ? "blue.300" : "gray.400", }}
 					onClick={() => PageChange(page)}
-				>
+					isDisabled={ state.modal ? true : false}
+					_disabled={{ color: page === currentPage ? "white" : "black", bg: page === currentPage ? "blue.500": "gray.300", }}>
 					{page}
 				</Button>
 			</ListItem>
