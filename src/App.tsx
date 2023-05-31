@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Flex, SystemStyleObject, useToast } from '@chakra-ui/react';
 import useContextApi from './context';
@@ -5,13 +6,14 @@ import ErrorBoundary from './pages/Error';
 import Home from './pages/home';
 import Nav from './pages/navBar';
 import SideBar from './pages/sideBar';
-import Courier from './pages/courier';
-import Payroll from './pages/payroll';
-import NotFound from './pages/NotFound';
-import Transaction from './pages/transaction';
-import Settings from './pages/settings';
-import Shipment from './pages/shipment';
-import Customer from './pages/customer';
+import Loading from './container/Loading';
+const Courier = lazy(()=> import('./pages/courier'));
+const Payroll = lazy(()=> import('./pages/payroll'));
+const NotFound = lazy(()=> import('./pages/NotFound'));
+const Transaction = lazy(()=>import('./pages/transaction'));
+const Settings = lazy(()=> import('./pages/settings'));
+const Shipment = lazy(()=> import('./pages/shipment'));
+const Customer = lazy(() => import('./pages/customer'));
 
 function App() {
 	const { state } = useContextApi();
@@ -55,7 +57,9 @@ function App() {
 							path='courier'
 							element={
 								<ErrorBoundary onError={notify}>
-									<Courier />
+									<Suspense fallback={<Loading isApp />}>
+										<Courier />
+									</Suspense>
 								</ErrorBoundary>
 							}
 						/>
@@ -63,7 +67,9 @@ function App() {
 							path='payroll'
 							element={
 								<ErrorBoundary onError={notify}>
-									<Payroll />
+									<Suspense fallback={<Loading isApp />}>
+										<Payroll />
+									</Suspense>
 								</ErrorBoundary>
 							}
 						/>
@@ -71,7 +77,9 @@ function App() {
 							path='shipment'
 							element={
 								<ErrorBoundary onError={notify}>
-									<Shipment />
+									<Suspense fallback={<Loading isApp />}>
+										<Shipment />
+									</Suspense>
 								</ErrorBoundary>
 							}
 						/>
@@ -79,7 +87,9 @@ function App() {
 							path='customer'
 							element={
 								<ErrorBoundary onError={notify}>
-									<Customer />
+									<Suspense fallback={<Loading isApp />}>
+										<Customer />
+									</Suspense>
 								</ErrorBoundary>
 							}
 						/>
@@ -87,7 +97,9 @@ function App() {
 							path='transaction'
 							element={
 								<ErrorBoundary onError={notify}>
-									<Transaction />
+									<Suspense fallback={<Loading isApp />}>
+										<Transaction />
+									</Suspense>
 								</ErrorBoundary>
 							}
 						/>
@@ -95,7 +107,9 @@ function App() {
 							path='settings'
 							element={
 								<ErrorBoundary onError={notify}>
-									<Settings />
+									<Suspense fallback={<Loading isApp />}>
+										<Settings />
+									</Suspense>
 								</ErrorBoundary>
 							}
 						/>
@@ -103,7 +117,9 @@ function App() {
 							path='*'
 							element={
 								<ErrorBoundary onError={notify}>
-									<NotFound />
+									<Suspense fallback={<Loading isApp />}>
+										<NotFound />
+									</Suspense>
 								</ErrorBoundary>
 							}
 						/>

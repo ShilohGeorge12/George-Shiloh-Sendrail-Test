@@ -6,7 +6,7 @@ const usePaginateData: TpaginateData = (riders, pageNumber, pageSize) => {
 	} else {
 		startIndex = (pageNumber - 1) * pageSize;
 	}
-	let result = riders.slice(startIndex, startIndex + pageSize);
+	const result = riders.slice(startIndex, startIndex + pageSize);
 	return result;
 };
 export default usePaginateData;

@@ -1,13 +1,15 @@
 import { useLocation } from 'react-router-dom';
 import MetaData from '../../meta';
-import { Container, Text } from '@chakra-ui/react';
+import { Flex, Text } from '@chakra-ui/react';
 
-interface IShipmentProps {}
-
-function Shipment(props: IShipmentProps) {
+function Shipment() {
 	const { pathname } = useLocation();
 	return (
-		<Container>
+		<Flex
+			w={'100%'}
+			h={'100%'}
+			alignItems={'center'}
+			justifyContent={'center'}>
 			<MetaData
 				title='Shipment'
 				description='Manage Your Shipment on this Page'
@@ -16,11 +18,10 @@ function Shipment(props: IShipmentProps) {
 			<Text
 				color={'gray.400'}
 				fontSize={'xl'}
-				textAlign={'center'}
-			>
-			Shipment Page
-			</Text> 
-		</Container>
+				textAlign={'center'}>
+				Shipment Page
+			</Text>
+		</Flex>
 	);
 }
 

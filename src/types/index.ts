@@ -1,5 +1,5 @@
-function typeGaurd<T>(arg: unknown): arg is T{
+function typeGaurd<T>(_arg: unknown): _arg is T{
   return true;
-};
+}
 
 export { typeGaurd, };

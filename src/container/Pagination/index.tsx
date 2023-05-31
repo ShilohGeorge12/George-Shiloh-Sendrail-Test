@@ -13,7 +13,7 @@ function Pagination({ length, PageChange, PageSize, currentPage }: IpaginationPr
 	const len = Math.ceil(length / PageSize);
 	if (len === 1) return null;
 	const pages: number[] = [];
-	for (var i = 0; i < len; i++) {
+	for (let i = 0; i < len; i++) {
 		pages.push(i + 1);
 	}
 

@@ -6,7 +6,7 @@ const initState: Icontext = {
 
 const context = createContext({
 	state: initState,
-	dispatch: (val: Taction) => {},
+	dispatch: (_val: Taction) => { },
 });
 
 function reducer(state: Icontext, action: Taction) {

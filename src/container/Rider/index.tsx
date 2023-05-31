@@ -75,6 +75,6 @@ function Rider ( props: IRidersProps) {
       </Button>
     </SimpleGrid>
   );
-};
+}
 
 export default Rider;

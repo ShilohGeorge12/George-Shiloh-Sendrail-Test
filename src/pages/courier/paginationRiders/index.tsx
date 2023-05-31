@@ -7,7 +7,7 @@ interface IPaginationRidersProps {
   data: IRider[],
   onCall: ( name: string, phoneNumber: string ) => void;
   onChat: ( name: string, phoneNumber: string ) => void;
-};
+}
 
 function PaginationRiders ( { data, onCall, onChat }: IPaginationRidersProps ) {
 	const [currentPage, setCurrentPage] = useState<number>(1);
@@ -40,6 +40,6 @@ function PaginationRiders ( { data, onCall, onChat }: IPaginationRidersProps ) {
       />
     </>
   );
-};
+}
 
 export default PaginationRiders;

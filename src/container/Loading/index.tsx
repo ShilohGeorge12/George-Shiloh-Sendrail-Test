@@ -1,9 +1,20 @@
-import { Flex, SimpleGrid, Skeleton } from "@chakra-ui/react";
+import { Flex, SimpleGrid, Skeleton, Spinner } from "@chakra-ui/react";
 
-interface ILoadingProps {
-};
 
-function Loading ( props: ILoadingProps ) {
+function Loading ({ isApp } : { isApp?: true }) {
+
+  if(isApp){
+    return (
+      <Flex 
+        w={'100%'}
+        h={'50vh'}
+        alignItems={'center'}
+        justifyContent={'center'}>
+        <Spinner w={'50px'} h={'50px'} color="blue.800" borderWidth={'5px'} />
+      </Flex>
+    )
+  };
+
   return (
     <SimpleGrid columns={5} placeItems={'center'} spacing={4}>
       <Flex direction={'column'} alignItems={'flex-start'}>
@@ -19,6 +30,6 @@ function Loading ( props: ILoadingProps ) {
         <Skeleton height="20px" width="40px" borderRadius={'5px'} />
     </SimpleGrid>
   );
-};
+}
 
 export default Loading;

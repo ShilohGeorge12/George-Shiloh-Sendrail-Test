@@ -76,11 +76,11 @@ function AddRider () {
       
       <Flex
         direction={'column'}
-        bg={'gray.300'}
+        bg={'gray.200'}
         borderRadius={'10px'}
         p={'1rem'}
         gap={'25px'}
-        boxShadow={'1px 1px 50px 2px #000e1'}
+        boxShadow={'2xl'}
       >
          <Flex gap={'20px'} alignItems={'center'} justifyContent={'center'} position={'relative'}>
           <Heading fontSize={{ base: '2rem', md: '2rem' }} color={"gray.800"} textAlign={'center'}>
@@ -156,6 +156,6 @@ function AddRider () {
     </Flex>, 
     document.getElementById('modal') as HTMLDivElement
   )
-};
+}
 
 export default AddRider;

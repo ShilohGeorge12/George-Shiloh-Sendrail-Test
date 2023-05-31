@@ -30,5 +30,5 @@ function MetaData(props: ImetaProps) {
 			<link rel='canonical' href={`http://localhost:7000${path}`} />
 		</Helmet>
 	);
-};
+}
 export default MetaData;
